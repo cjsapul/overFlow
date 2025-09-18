@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Tools | OverFlow</title>
+  <link rel="stylesheet" href="styleOverFloww.css" />
+</head>
+<body>
+  <header>
+	<img src="knsLogo.png" class = "logo_image">
+    <h1>⏱️ Focus Tools</h1>
+    <nav>
+      <a href="dashBoardOverflow.html">Dashboard</a>
+      <a href="research.html">Research</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Pomodoro Timer</h2>
+      <div id="timer" class = "tool_card">
+        <h3 id="session-label">Focus Session</h3>
+        <p id="time">25:00</p>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+    </section>
+	
+	<section>
+		<h2>Distraction Blocker</h2>
+		<p>Enter distracting websites (e.g., facebook.com, youtube.com):</p>
+		<input type="text" id="blockList" placeholder="Comma-separated URLs" />
+		<button onclick="activateBlocker()">Block Distractions</button>
+		<button onclick="clearBlocker()">Clear Block List</button>
+	</section>
+
+<script>
+  function activateBlocker() {
+    const input = document.getElementById("blockList").value;
+    const blockedSites = input.split(",").map(site => site.trim().toLowerCase());
+
+    const links = document.querySelectorAll("a");
+    links.forEach(link => {
+      const href = link.getAttribute("href");
+      if (blockedSites.some(site => href.includes(site))) {
+        link.style.pointerEvents = "none";
+        link.style.opacity = "0.5";
+        link.title = "Blocked during focus session";
+      }
+    });
+  }
+
+  function clearBlocker() {
+    const links = document.querySelectorAll("a");
+    links.forEach(link => {
+      link.style.pointerEvents = "auto";
+      link.style.opacity = "1";
+      link.title = "";
+    });
+    document.getElementById("blockList").value = "";
+  }
+</script>
+
+	
+  </main>
+
+  <script>
+    let isFocus = true;
+    let timeLeft = 25 * 60;
+    let timerInterval;
+
+    function updateDisplay() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      document.getElementById("time").textContent =
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        updateDisplay();
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          isFocus = !isFocus;
+          timeLeft = isFocus ? 25 * 60 : 5 * 60;
+          document.getElementById("session-label").textContent =
+            isFocus ? "Focus Session" : "Break Time";
+          startTimer();
+        }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      isFocus = true;
+      timeLeft = 25 * 60;
+      document.getElementById("session-label").textContent = "Focus Session";
+      updateDisplay();
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>

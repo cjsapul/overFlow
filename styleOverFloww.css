@@ -1,0 +1,277 @@
+:root {
+  --primary: #2c3e50;
+  --accent: #3498db;
+  --accent-dark: #2980b9;
+  --warning: #e67e22;
+  --warning-dark: #d35400;
+  --success: #27ae60;
+  --success-dark: #1e8449;
+  --danger: #e74c3c;
+  --light-bg: #f4f6f8;
+  --card-bg: #ffffff;
+  --text: #333333;
+  --muted: #777777;
+  --border: #dddddd;
+  --shadow-soft: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-subtle: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* ====== Reset & base ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--light-bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* ====== Header & nav ====== */
+header {
+  background: linear-gradient(135deg, var(--primary), #1f2d3a);
+  color: #fff;
+  padding: 22px 20px;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+header h1 {
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 16px;
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover {
+  background-color: rgba(236,240,241,0.12);
+  color: #ffffff;
+}
+
+/* ====== Main layout ====== */
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  padding: 28px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
+}
+
+section + section {
+  margin-top: 26px;
+}
+
+section h2 {
+  margin-bottom: 18px;
+  color: #34495e;
+}
+
+/* ====== Cards (optional wrappers) ====== */
+.tool-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin-bottom: 24px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* ====== Lists & links ====== */
+ul {
+  list-style: none;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+ul li a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+ul li a:hover {
+  color: var(--accent-dark);
+  border-color: rgba(52, 152, 219, 0.35);
+}
+
+/* ====== Timer styles ====== */
+#timer {
+  text-align: center;
+}
+
+#session-label {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+#time {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--danger);
+  letter-spacing: 1px;
+}
+
+/* ====== Buttons ====== */
+button {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  margin: 6px 8px 6px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+button:hover {
+  background-color: var(--accent-dark);
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Button variants */
+button.btn-warning {
+  background-color: var(--warning);
+}
+button.btn-warning:hover {
+  background-color: var(--warning-dark);
+}
+
+button.btn-success {
+  background-color: var(--success);
+}
+button.btn-success:hover {
+  background-color: var(--success-dark);
+}
+
+/* ====== Inputs & forms ====== */
+section input[type="text"],
+form input[type="text"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+section input[type="text"]:focus,
+form input[type="text"]:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+}
+
+form {
+  margin-top: 16px;
+}
+
+form button[type="submit"] {
+  background-color: var(--success);
+}
+form button[type="submit"]:hover {
+  background-color: var(--success-dark);
+}
+
+/* ====== Distraction blocker buttons (optional targeted style) ====== */
+.distraction-actions button:first-of-type {
+  background-color: var(--warning);
+}
+.distraction-actions button:first-of-type:hover {
+  background-color: var(--warning-dark);
+}
+.distraction-actions button:last-of-type {
+  background-color: var(--accent);
+}
+.distraction-actions button:last-of-type:hover {
+  background-color: var(--accent-dark);
+}
+
+/* ====== Footer ====== */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* ====== Helpers & animation ====== */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+
+  header, main {
+    border-radius: 12px;
+  }
+
+  nav a {
+    display: block;
+    margin: 6px 0;
+    padding: 8px 10px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  #time {
+    font-size: 2.6rem;
+  }
+}
+
+.logo_image{
+	float: right;
+	height: 100px;
+	weight: 100px;
+	
+	
+}
