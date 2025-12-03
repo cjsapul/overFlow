@@ -29,9 +29,72 @@
       </ul>
     </section>
   </main>
+  
+    <!-- Chatbot UI -->
+<div id="chatbot-button">💬 Chat</div>
+<div id="chatbot-window">
+  <h3>OverFlow Assistant</h3>
+  <div id="chat-log"></div>
+  <input type="text" id="chat-input" placeholder="Type your question..." />
+  <button onclick="sendMessage()">Send</button>
+</div>
 
   <footer>
     <p>&copy; 2025 Kolehiyo ng Subic | OverFlow MVP</p>
   </footer>
+
+
+  
 </body>
 </html>
+<script>
+  const chatbotButton = document.getElementById("chatbot-button");
+  const chatbotWindow = document.getElementById("chatbot-window");
+  const chatLog = document.getElementById("chat-log");
+  const chatInput = document.getElementById("chat-input");
+
+  chatbotButton.addEventListener("click", () => {
+    chatbotWindow.style.display =
+      chatbotWindow.style.display === "none" ? "block" : "none";
+  });
+
+  function sendMessage() {
+    const userMessage = chatInput.value.trim();
+    if (!userMessage) return;
+
+    // Display user message
+    const userBubble = document.createElement("div");
+    userBubble.textContent = "👩‍🎓 " + userMessage;
+    chatLog.appendChild(userBubble);
+
+    // Generate bot response
+    let botReply = "🤖 I’m not sure about that yet, but I can help with focus tools, research, or feedback.";
+
+    const msg = userMessage.toLowerCase();
+
+    if (msg.includes("focus") || msg.includes("timer") || msg.includes("study")) {
+      botReply = "🤖 Try the Pomodoro timer in Focus Tools ⏱️. It helps structure your study sessions.";
+    } else if (msg.includes("research") || msg.includes("journal") || msg.includes("article")) {
+      botReply = "🤖 Check out Google Scholar, DOAJ, or JSTOR in the Research Resources 📚.";
+    } else if (msg.includes("feedback") || msg.includes("suggestion")) {
+      botReply = "🤖 You can submit feedback through the Feedback page 💬.";
+    } else if (msg.includes("lms") || msg.includes("portal") || msg.includes("class")) {
+      botReply = "🤖 Access your courses through the LMS Portal here: https://lms.kolehiyongsubic.edu.ph";
+    } else if (msg.includes("library") || msg.includes("books") || msg.includes("resources")) {
+      botReply = "🤖 Visit the Library Portal for study materials: https://library.kolehiyongsubic.edu.ph";
+    } else if (msg.includes("email") || msg.includes("mail")) {
+      botReply = "🤖 Use your Student Email here: https://mail.kolehiyongsubic.edu.ph";
+    } else if (msg.includes("sino si rhomel")){
+	  botReply = "Isa yang KUPAL!!";
+	} else if (msg.includes("sino si angelica")){
+	  botReply = "Asawa ni CJ Aoas";
+	  }
+
+    const botBubble = document.createElement("div");
+    botBubble.textContent = botReply;
+    chatLog.appendChild(botBubble);
+
+    chatInput.value = "";
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+</script>
